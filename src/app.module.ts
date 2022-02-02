@@ -9,7 +9,7 @@ const url = process.env.MONGO_URL || 'mongodb:27017';
 
 @Module({
   imports: [MongooseModule.forRoot(`mongodb://${url}/booked`), BooksModule],
-  controllers: [AppController, BooksController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
