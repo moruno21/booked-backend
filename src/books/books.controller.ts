@@ -17,8 +17,8 @@ export class BooksController {
     return this.booksService.getAvailableBooks();
   }
 
-  @Get(':id')
-  getBook(@Param('id') bookId): Promise<Book> {
+  @Get(':bookId')
+  getBook(@Param('bookId') bookId): Promise<Book> {
     return this.booksService.getBook(bookId);
   }
 
