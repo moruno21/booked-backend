@@ -1,6 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
+import { throwError } from 'rxjs';
+import { isValidId } from 'src/shared/isValidId';
 import { CreatedBookDTO } from './dto/created-book.dto';
 import { Book } from './interfaces/book';
 
@@ -13,7 +15,10 @@ export class BooksService {
   }
 
   async getBook(bookId: string): Promise<Book> {
-    return await this.bookModel.findById(bookId);
+    isValidId(bookId);
+    const book = await this.bookModel.findById(bookId);
+    if (!book) throw new HttpException('Book not found', HttpStatus.NOT_FOUND);
+    return book;
   }
 
   async getAvailableBooks(): Promise<Book[]> {
@@ -26,11 +31,13 @@ export class BooksService {
   }
 
   async deleteBook(bookId: string): Promise<string> {
+    isValidId(bookId);
     await this.bookModel.deleteOne({ _id: bookId });
     return `Book ${bookId} deleted`;
   }
 
   async updateBook(updatedBook: CreatedBookDTO, bookId: string): Promise<Book> {
+    isValidId(bookId);
     await this.bookModel.findByIdAndUpdate(bookId, updatedBook);
     return this.getBook(bookId);
   }
