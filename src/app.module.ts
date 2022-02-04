@@ -11,7 +11,12 @@ import { UsersModule } from './users/users.module';
 const url = process.env.MONGO_URL || 'mongodb:27017';
 
 @Module({
-  imports: [MongooseModule.forRoot(`mongodb://${url}/booked`), BooksModule, UsersModule],
+  imports: [
+    MongooseModule.forRoot(`mongodb://${url}/booked`),
+    BooksModule,
+    UsersModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
