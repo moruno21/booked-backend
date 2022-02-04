@@ -4,11 +4,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BooksController } from './books/books.controller';
 import { BooksModule } from './books/books.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersService } from './users/users.service';
+import { UsersModule } from './users/users.module';
 
 const url = process.env.MONGO_URL || 'mongodb:27017';
 
 @Module({
-  imports: [MongooseModule.forRoot(`mongodb://${url}/booked`), BooksModule],
+  imports: [MongooseModule.forRoot(`mongodb://${url}/booked`), BooksModule, UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })
