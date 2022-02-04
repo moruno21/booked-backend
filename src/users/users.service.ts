@@ -9,4 +9,8 @@ export class UsersService {
   async getUsers(): Promise<User[]> {
     return await this.userModel.find();
   }
+
+  async getUser(username: string): Promise<User> {
+    return await this.userModel.findOne({ username: username });
+  }
 }
