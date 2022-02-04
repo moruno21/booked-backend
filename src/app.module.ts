@@ -7,6 +7,7 @@ import { BooksModule } from './books/books.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
+import { LoansModule } from './loans/loans.module';
 
 const url = process.env.MONGO_URL || 'mongodb:27017';
 
@@ -16,6 +17,7 @@ const url = process.env.MONGO_URL || 'mongodb:27017';
     BooksModule,
     UsersModule,
     AuthModule,
+    LoansModule,
   ],
   controllers: [AppController],
   providers: [AppService],
