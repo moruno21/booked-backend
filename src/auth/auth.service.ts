@@ -5,7 +5,7 @@ import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private usersService: UsersService, private jwtservice: JwtService) {}
+  constructor(private usersService: UsersService, private jwtService: JwtService) {}
 
   async validateUser(username: string) {
     const user = await this.usersService.getUser(username);
@@ -14,15 +14,15 @@ export class AuthService {
   }
 
   async login(user: User) {
-    const payload = { username: user.username, sub: user.id };
+    const payload = { email: user.email, sub: user.id };
 
-    return { access_token: this.jwtservice.sign(payload) };
+    return { access_token: this.jwtService.sign(payload) };
   }
 
   async signInWithGoogle(data: any) {
     if (!data.user) throw new BadRequestException();
-
     let user = await this.usersService.getUser(data.user.email);
+
     if (user) return this.login(user);
 
     try {
