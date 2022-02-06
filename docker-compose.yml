@@ -11,7 +11,7 @@ services:
       - 3000:3000
       - 3001:9229
     networks:
-      - nesjs-network
+      - booked-network
     depends_on:
       - mongodb
     volumes:
@@ -26,7 +26,7 @@ services:
     ports:
       - 27017:27017
     networks:
-      - nesjs-network
+      - booked-network
     restart: always
   prod:
     container_name: nestjs_api_prod
@@ -39,7 +39,7 @@ services:
       - 3000:3000
       - 9229:9229
     networks:
-      - nesjs-network
+      - booked-network
     depends_on:
       - mongodb
     volumes:
@@ -50,5 +50,5 @@ volumes:
   mongo-data: {}
 
 networks:
-  nesjs-network:
-    driver: bridge
+  booked-network:
+    name: booked-network
