@@ -12,6 +12,11 @@ export class BooksController {
     return this.booksService.getBooks();
   }
 
+  @Get('available')
+  getAvailableBooks(): Promise<Book[]> {
+    return this.booksService.getAvailableBooks();
+  }
+
   @Get(':bookId')
   getBook(@Param('bookId') bookId): Promise<Book> {
     return this.booksService.getBook(bookId);

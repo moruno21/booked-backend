@@ -3,4 +3,5 @@ export class CreatedBookDTO {
   description: string;
   author: string;
   image: string;
+  available: boolean;
 }

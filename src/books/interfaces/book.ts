@@ -4,4 +4,5 @@ export interface Book {
   description: string;
   author: string;
   image: string;
+  available: boolean;
 }

@@ -21,6 +21,10 @@ export class BooksService {
     return book;
   }
 
+  async getAvailableBooks(): Promise<Book[]> {
+    return await this.bookModel.find({ available: true });
+  }
+
   async postBook(createdBook: CreatedBookDTO): Promise<Book> {
     const newBook = new this.bookModel(createdBook);
     return await newBook.save();
