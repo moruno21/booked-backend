@@ -5,7 +5,7 @@ import { CreatedLoanDTO } from './dto/created-loan.dto';
 import { Loan } from './interfaces/loan';
 import { LoansService } from './loans.service';
 
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 @Controller('loans')
 export class LoansController {
   constructor(private loansService: LoansService) {}
