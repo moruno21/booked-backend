@@ -8,12 +8,17 @@ import { AuthModule } from './auth/auth.module';
 import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
 import { LoansModule } from './loans/loans.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 const url = process.env.MONGO_URL || 'mongodb:27017';
 
 @Module({
   imports: [
     MongooseModule.forRoot(`mongodb://${url}/booked`),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+    }),
     BooksModule,
     UsersModule,
     AuthModule,

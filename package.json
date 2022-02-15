@@ -28,6 +28,7 @@
     "@nestjs/mongoose": "^9.0.2",
     "@nestjs/passport": "^8.1.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/serve-static": "^2.2.2",
     "dotenv": "^16.0.0",
     "mongoose": "^6.1.9",
     "passport": "^0.5.2",
