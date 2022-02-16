@@ -16,9 +16,6 @@ const url = process.env.MONGO_URL || 'mongodb:27017';
 @Module({
   imports: [
     MongooseModule.forRoot(`mongodb://${url}/booked`),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
-    }),
     BooksModule,
     UsersModule,
     AuthModule,
