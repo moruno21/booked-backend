@@ -19,7 +19,7 @@ export class AuthService {
     return { access_token: this.jwtService.sign(payload) };
   }
 
-  async signInWithGoogle(data: any) {
+  async logInWithGoogle(data: any) {
     if (!data.user) throw new BadRequestException();
     let user = await this.usersService.getUser(data.user.email);
 
