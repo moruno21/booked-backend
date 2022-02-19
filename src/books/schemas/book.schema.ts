@@ -5,5 +5,4 @@ export const BookSchema = new Schema({
   description: String,
   author: String,
   image: String,
-  available: Boolean,
 });
