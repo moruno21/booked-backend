@@ -32,7 +32,7 @@ export class BooksService {
     for await (let loan of currentLoans) {
       if (loan.finalDate == null) {
         let availableBook = await this.getBook(loan.bookId);
-        if (!availableBooks.some((book) => (book.id = availableBook.id)))
+        if (!availableBooks.some((book) => book.id === availableBook.id))
           availableBooks.push(availableBook);
       }
     }
