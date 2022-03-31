@@ -1,7 +1,5 @@
 export class CreatedUserDTO {
-  username: string;
-  name: string;
-  surname: string;
+  fullName: string;
   email: string;
-  image: string;
+  imageUrl: string;
 }

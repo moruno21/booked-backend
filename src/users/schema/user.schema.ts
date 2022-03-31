@@ -1,9 +1,7 @@
 import { Schema } from 'mongoose';
 
 export const UserSchema = new Schema({
-  username: String,
-  name: String,
-  surname: String,
+  fullName: String,
   email: String,
-  image: String,
+  imageUrl: String,
 });

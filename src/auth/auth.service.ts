@@ -27,11 +27,9 @@ export class AuthService {
 
     try {
       const newUser: User = {
-        username: '',
-        name: data.user.firstName,
-        surname: data.user.lastName,
+        fullName: data.user.firstName,
         email: data.user.email,
-        image: '',
+        imageUrl: '',
       };
 
       await this.usersService.postUser(newUser);
