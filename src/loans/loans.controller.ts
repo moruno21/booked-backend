@@ -1,5 +1,4 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
-import { GoogleAuthGuard } from 'src/auth/guards/google-auth.guard';
 import { JwtAuthGuard } from 'src/auth/guards/jws-auth.guard';
 import { CreatedLoanDTO } from './dto/created-loan.dto';
 import { Loan } from './interfaces/loan';
