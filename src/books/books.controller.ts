@@ -1,8 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards/jws-auth.guard';
 import { BooksService } from './books.service';
 import { CreatedBookDTO } from './dto/created-book.dto';
 import { Book } from './interfaces/book';
 
+@UseGuards(JwtAuthGuard)
 @Controller('books')
 export class BooksController {
   constructor(private booksService: BooksService) {}
