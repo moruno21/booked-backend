@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { isValidMongoId } from 'src/shared/isValidMongoId';
 import { CreatedLoanDTO } from './dto/created-loan.dto';
+import { FinishedLoanDTO } from './dto/finished-loan.dto';
 import { Loan } from './interfaces/loan';
 
 @Injectable()
@@ -30,9 +31,12 @@ export class LoansService {
     return `Loan ${loanId} deleted`;
   }
 
-  async updateLoan(updatedLoan: CreatedLoanDTO, loanId: string): Promise<Loan> {
+  async finishLoan(loanId: string, finishedLoan: FinishedLoanDTO): Promise<Loan> {
     isValidMongoId(loanId);
-    await this.loanModel.findByIdAndUpdate(loanId, updatedLoan);
+    finishedLoan.finalDate = new Date();
+    console.log(finishedLoan);
+
+    await this.loanModel.findByIdAndUpdate(loanId, finishedLoan);
     return this.getLoan(loanId);
   }
 }
