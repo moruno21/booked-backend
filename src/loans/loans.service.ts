@@ -9,6 +9,7 @@ import { Loan } from './interfaces/loan';
 @Injectable()
 export class LoansService {
   constructor(@InjectModel('Loan') private loanModel: Model<Loan>) {}
+
   async getLoans(): Promise<Loan[]> {
     return await this.loanModel.find();
   }
@@ -18,6 +19,11 @@ export class LoansService {
     const loan = await this.loanModel.findById(loanId);
     if (!loan) throw new HttpException('Loan not found', HttpStatus.NOT_FOUND);
     return loan;
+  }
+
+  async getUserLoans(userId: string): Promise<Loan[]> {
+    const userLoans = await this.loanModel.find({ userId: userId });
+    return userLoans;
   }
 
   async postLoan(createdLoan: CreatedLoanDTO): Promise<Loan> {
