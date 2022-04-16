@@ -17,7 +17,6 @@ RUN npm run build
 FROM node:12.19.0-alpine3.9 as production
 
 ARG NODE_ENV=production
-ENV TZ="Europe/Madrid"
 ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
