@@ -1,5 +1,5 @@
 export class CreatedLoanDTO {
-  userId: string;
+  userEmail: string;
   bookId: string;
   initialDate: Date;
   finalDate: Date;

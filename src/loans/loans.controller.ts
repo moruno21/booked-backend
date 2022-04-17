@@ -15,9 +15,9 @@ export class LoansController {
     return this.loansService.getLoans();
   }
 
-  @Get(':userId')
-  getUserLoans(@Param('userId') userId: string): Promise<Loan[]> {
-    return this.loansService.getUserLoans(userId);
+  @Get(':userEmail')
+  getUserLoans(@Param('userEmail') userEmail: string): Promise<Loan[]> {
+    return this.loansService.getUserLoans(userEmail);
   }
 
   @Post()

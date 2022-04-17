@@ -21,12 +21,13 @@ export class LoansService {
     return loan;
   }
 
-  async getUserLoans(userId: string): Promise<Loan[]> {
-    const userLoans = await this.loanModel.find({ userId: userId });
+  async getUserLoans(userEmail: string): Promise<Loan[]> {
+    const userLoans = await this.loanModel.find({ userEmail: userEmail });
     return userLoans;
   }
 
   async postLoan(createdLoan: CreatedLoanDTO): Promise<Loan> {
+    createdLoan.initialDate = new Date();
     const newLoan = new this.loanModel(createdLoan);
     return await newLoan.save();
   }
@@ -40,8 +41,6 @@ export class LoansService {
   async finishLoan(loanId: string, finishedLoan: FinishedLoanDTO): Promise<Loan> {
     isValidMongoId(loanId);
     finishedLoan.finalDate = new Date();
-    console.log(finishedLoan);
-
     await this.loanModel.findByIdAndUpdate(loanId, finishedLoan);
     return this.getLoan(loanId);
   }
