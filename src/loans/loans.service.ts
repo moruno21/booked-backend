@@ -14,11 +14,10 @@ export class LoansService {
     return await this.loanModel.find();
   }
 
-  async getLoan(loanId: string): Promise<Loan> {
-    isValidMongoId(loanId);
-    const loan = await this.loanModel.findById(loanId);
-    if (!loan) throw new HttpException('Loan not found', HttpStatus.NOT_FOUND);
-    return loan;
+  async getCurrentBookLoan(bookId: string): Promise<Loan | any> {
+    const currentBookLoan = await this.loanModel.findOne({ bookId: bookId, finalDate: null });
+    if (!currentBookLoan) return {};
+    return currentBookLoan;
   }
 
   async getUserLoans(userEmail: string): Promise<Loan[]> {
@@ -42,6 +41,6 @@ export class LoansService {
     isValidMongoId(loanId);
     finishedLoan.finalDate = new Date();
     await this.loanModel.findByIdAndUpdate(loanId, finishedLoan);
-    return this.getLoan(loanId);
+    return finishedLoan;
   }
 }
